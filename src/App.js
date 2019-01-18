@@ -6,7 +6,7 @@ class App extends Component {
 		super();
 		this.state = {
 			movie: "",
-			serie: "",
+			series: "",
 			drama: "",
 			play: "",
 			game: "",
@@ -26,12 +26,16 @@ class App extends Component {
 		event.preventDefault();
 
 		if (this.state[event.target[0].id]) {
-			console.log("not empty");
+
+			//firebase
+
+			//clear form and state 
+			this.setState({
+				[event.target[0].id]: ""
+			})
 		} else {
 			alert(`Please add a ${event.target[0].id} title.`);
 		}
-		// console.log(event.target[0].id);
-		
 	}
 
 	//RENDER
@@ -47,7 +51,7 @@ class App extends Component {
 						<h2 className="movies__h2 heading__h2">Movies</h2>
 
 						<form onSubmit={this.handleSubmit} action="" className="movies__form form">
-							<label htmlFor="movies" className="movies__label visuallyhidden">Movie title.</label>
+							<label htmlFor="movie" className="form__label visuallyhidden">Movie title.</label>
 							<input 
 							type="text" 
 							className="form__field"
@@ -57,12 +61,26 @@ class App extends Component {
 							placeholder="Movie title"
 							/>
 
-							<input type="submit" className="form__submit button" value="Add"/>
+							<input type="submit" className="form__submit button" value="Add movie."/>
 						</form>
 					</section>
 
 					<section className="series">
 						<h2 className="series__h2 heading__h2">Series</h2>
+
+						<form onSubmit={this.handleSubmit} action="" className="series__form form">
+							<label htmlFor="series" className="form__label visuallyhidden">Series title.</label>
+							<input 
+							type="text"
+							className="form__field"
+							onChange={this.handleChange}
+							id="series"
+							value={this.state.series}
+							placeholder="Series title" 
+							/>
+
+							<input type="submit" className="form__submit button" value="Add series."/>
+						</form>
 					</section>
 
 					<section className="dramas">
