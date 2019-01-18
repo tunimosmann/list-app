@@ -5,15 +5,36 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			movies: "",
-			series: "",
-			dramas: "",
-			theatre: "",
-			games: "",
-			books: "" 
+			movie: "",
+			serie: "",
+			drama: "",
+			play: "",
+			game: "",
+			book: "" 
 		}
 	}
 
+	// FUNCTIONS
+
+	handleChange = (event) => {
+		this.setState({
+			[event.target.id]: event.target.value
+		})
+	}
+
+	handleSubmit = (event) => {
+		event.preventDefault();
+
+		if (this.state[event.target[0].id]) {
+			console.log("not empty");
+		} else {
+			alert(`Please add a ${event.target[0].id} title.`);
+		}
+		// console.log(event.target[0].id);
+		
+	}
+
+	//RENDER
 	render() {
 		return (
 			<div className="App">
@@ -24,6 +45,20 @@ class App extends Component {
 				<main className="main">
 					<section className="movies">
 						<h2 className="movies__h2 heading__h2">Movies</h2>
+
+						<form onSubmit={this.handleSubmit} action="" className="movies__form form">
+							<label htmlFor="movies" className="movies__label visuallyhidden">Movie title.</label>
+							<input 
+							type="text" 
+							className="form__field"
+							onChange={this.handleChange}
+							id="movie"
+							value={this.state.movie}
+							placeholder="Movie title"
+							/>
+
+							<input type="submit" className="form__submit button" value="Add"/>
+						</form>
 					</section>
 
 					<section className="series">
