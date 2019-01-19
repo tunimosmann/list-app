@@ -10,7 +10,10 @@ class App extends Component {
 			drama: "",
 			play: "",
 			game: "",
-			book: "" 
+			book: "",
+			volunteer: 0,
+			writeArticle: 0, 
+			techEvent: 0
 		}
 	}
 
@@ -37,6 +40,17 @@ class App extends Component {
 			alert(`Please add a ${event.target[0].id} title.`);
 		}
 	}
+
+	addToCounter = (event => {
+		event.preventDefault();
+
+		this.setState({
+			[event.target.id]: (this.state[event.target.id] + 1)
+		})
+
+		//firebase
+
+	})
 
 	//RENDER
 	render() {
@@ -173,20 +187,35 @@ class App extends Component {
 
 							<div className="counters__item">
 								<h3 className="counters__h3 heading__h3">Volunteered <span className="counters__emoji emoji" aria-label="Woman Technologist" role="img">👩‍💻</span></h3>
-								<p className="counters__times">Counter: <span className="counters__span">0</span></p>
-								<input type="submit" value="I did it!" className="counters__button button"/>
+								<p className="counters__times">Counter: <span className="counters__span">{this.state.volunteer}</span></p>
+								<input 
+								type="submit" 
+								value="I did it!" 
+								className="counters__button button"
+								id="volunteer"
+								onClick={this.addToCounter}/>
 							</div>
 
 							<div className="counters__item">
 								<h3 className="counters__h3 heading__h3">Wrote an Article <span className="counters__emoji emoji" aria-label="Pencil" role="img">✏️</span></h3>
-								<p className="counters__times">Counter: <span className="counters__span">0</span></p>
-								<input type="submit" value="I did it!" className="counters__button button"/>
+								<p className="counters__times">Counter: <span className="counters__span">{this.state.writeArticle}</span></p>
+								<input 
+								type="submit" 
+								value="I did it!" 
+								className="counters__button button"
+								id="writeArticle"
+								onClick={this.addToCounter}/>
 							</div>
 
 							<div className="counters__item">
 								<h3 className="counters__h3 heading__h3">Went to a Tech Event <span className="counters__emoji emoji" aria-label="Laptop computer" role="img">💻</span></h3>
-								<p className="counters__times">Counter: <span className="counters__span">0</span></p>
-								<input type="submit" value="I did it!" className="counters__button button"/>
+								<p className="counters__times">Counter: <span className="counters__span">{this.state.techEvent}</span></p>
+								<input 
+								type="submit" 
+								value="I did it!" 
+								className="counters__button button"
+								id="techEvent"
+								onClick={this.addToCounter}/>
 							</div>
 						</div>
 					</section>
